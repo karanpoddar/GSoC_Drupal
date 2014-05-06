@@ -1,0 +1,49 @@
+<?php
+/**
+ * @file
+ * A block module that displays recent blog and forum posts.
+ */
+
+use Drupal\Component\Utility\String;
+use Drupal\monitoring\Result\SensorResultInterface;
+
+/**
+ * Implements hook_help().
+ *
+ * Displays help and module information.
+ *
+ * @param path
+ *   Which path of the site we're using to display help
+ * @param arg
+ *   Array that holds the current path as returned from arg() function
+ */
+function demoSensor_help($path, $arg) {
+	switch ($path) {
+		case "admin/help#demoSensor":
+			return '<p>' . t("Displays links to nodes created on this date") . '</p>';
+			break;
+	}
+}
+
+
+/**
+ * Implements hook_block_info().
+ */
+function demoSensor_monitoring_sensor_info() {
+	$sensors = array();
+	$sensors['demoSensor'] = array (
+
+			'label' => 'Demo Successful',
+			'description' => 'Demo Sensor to check working of Monitoring module',
+			'sensor_class' => 'Drupal\monitoring\Sensor\Sensors\SensorSimpleDatabaseAggregator', 
+			'value_type' => 'bool',
+			'settings' => array(
+				'category' => 'Other',
+				'enabled' => FALSE,
+				'variable_name' => 'demo_var',
+				'variable_value' => FALSE,
+				'variable_default_value' => FALSE,
+				),
+			);
+	return $sensors;
+}

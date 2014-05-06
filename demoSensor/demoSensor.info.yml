@@ -1,0 +1,6 @@
+name: demoSensor
+description: Module to extend monitoring using hooks
+core: 8.x
+package: Custom
+dependencies:
+type: module
