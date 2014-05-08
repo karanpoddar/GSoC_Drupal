@@ -1,0 +1,37 @@
+<?php
+/**
+ * @file
+ * Code for page_cache sensor module.
+ *
+ * Defines sensor to check if internal page cache is enabled.
+ *
+ */
+
+use Drupal\monitoring\Senor\Sensors\SensorConfigValue;
+
+/**
+ * Implements hook_monitoring_sensor_info().
+ *
+ *
+ */
+function page_cache_monitoring_sensor_info() {
+  $info = array();
+
+  $info['page_cache'] = array(
+    'label' => 'Page Cache Indicator',
+    'description' => 'Keeps track of page cache',
+    'sensor_class' => 'Drupal\monitoring\Sensor\Sensors\SensorConfigValue',
+    'value_type' => 'bool',
+    'numeric' => FALSE,
+    'services' => array('config.factory'),
+    'settings' => array(
+      'category' => 'System',
+      'config' => 'system.performance',
+      'key' => 'cache.page.use_internal',
+      'result_logging' => TRUE,
+      'caching_time' => 3600,
+      'value' => FALSE,
+    ),
+  );
+  return $info;
+}

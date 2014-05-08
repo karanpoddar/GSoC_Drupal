@@ -1,0 +1,8 @@
+name: page_cache
+type: module
+description: A sensor module that checks if the internal page cache is enabled.
+package: Custom
+core: 8.x
+
+dependencies:
+type: module
